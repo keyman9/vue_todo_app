@@ -4,18 +4,26 @@
     ###<p>Pending Tasks: {{todos.filter(todo => {return todo.done === false}).length}}</p>
     -->
     <div></div>
-    <todo v-on:delete-todo="deleteTodo" v-on:complete-todo="completeTodo" v-for="todo in todos" :todo.sync="todo"></todo>
+    <todo v-on:delete-todo="deleteTodo"
+          v-on:complete-todo="completeTodo"
+          :key="todo.title"
+          v-bind:todo="todo"
+          v-for="todo in todos"
+          >
+    </todo>
   </div>
 </template>
 
 <script type = "text/javascript" >
 
 import Todo from './Todo';
+import CreateTodo from './CreateTodo';
 
 export default {
   props: ['todos'],
   components: {
     Todo,
+    CreateTodo,
   },
   methods: {
     deleteTodo(todo) {

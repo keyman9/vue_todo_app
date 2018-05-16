@@ -1,11 +1,13 @@
 <template>
-  <div>
+  <div id="app">
+    <h1 class='ui dividing centered header'> Vue To Do </h1>
     <todo-list v-bind:todos="todos"></todo-list>
-    <create-todo v-on:add-todo="addTodo"></create-todo>
+    <create-todo v-on:create-todo="createTodo"></create-todo>
   </div>
 </template>
 
 import TodoList from './components/TodoList';
+import CreateTodo from './components/CreateTodo';
 
 <script>
 
@@ -20,11 +22,8 @@ export default {
   },
 
   methods: {
-    addTodo(title) {
-      this.todos.push({
-        title,
-        done: false,
-      });
+    createTodo(newTodo) {
+      this.todos.push(newTodo);
     },
   },
 
