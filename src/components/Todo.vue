@@ -1,5 +1,5 @@
 <template>
-  <div class='ui centered card'>
+  <div class='ui centered card' id='card'>
     <div class="content" v-show="!isEditing">
       <div class='header'>
           {{ todo.title }}
@@ -33,10 +33,12 @@
         </div>
       </div>
     </div>
-    <div class='ui bottom attached green basic button' v-show="!isEditing &&todo.done" disabled>
+    <div class='ui bottom attached green basic button' v-show="!isEditing && todo.done" disabled>
         Completed
     </div>
-    <div class='ui bottom attached red basic button' v-show="!isEditing && !todo.done">
+    <div class='ui bottom attached red basic button'
+      v-show="!isEditing && !todo.done"
+      v-on:click="completeTodo(todo)">
         Pending
     </div>
   </div>
@@ -66,3 +68,10 @@ export default {
   },
 };
 </script>
+
+<style>
+#card {
+  background-color: #0ff99c;
+  margin-bottom: 1em;
+}
+</style>

@@ -1,14 +1,14 @@
 <template>
-  <div>
+  <div id='list'>
     <!-- <p>Completed Tasks: {{todos.filter(todo => {return todo.done === true}).length}}</p>
     ###<p>Pending Tasks: {{todos.filter(todo => {return todo.done === false}).length}}</p>
     -->
-    <div></div>
+    <!--<div></div>-->
     <todo v-on:delete-todo="deleteTodo"
           v-on:complete-todo="completeTodo"
           :key="todo.title"
-          v-bind:todo="todo"
           v-for="todo in todos"
+          :todo.sync="todo"
           >
     </todo>
   </div>
@@ -17,13 +17,11 @@
 <script type = "text/javascript" >
 
 import Todo from './Todo';
-import CreateTodo from './CreateTodo';
 
 export default {
   props: ['todos'],
   components: {
     Todo,
-    CreateTodo,
   },
   methods: {
     deleteTodo(todo) {
@@ -37,3 +35,11 @@ export default {
   },
 };
 </script>
+
+<style>
+#list {
+  background-color: #00ddf7;
+  margin: 3rem;
+  padding: 2rem;
+}
+</style>
